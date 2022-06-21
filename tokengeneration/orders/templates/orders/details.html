@@ -1,0 +1,398 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html> -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function()
+            {
+                $('.chkcvalues').click(function(){
+                    var txt="";
+                    $('.chkcvalues:checked').each(function(){
+                        txt +=$(this).val()+","
+                    });
+                    txt=txt.substring(0,txt.length-1);
+                    $('#txtvalues').val(txt);
+                })
+            })
+    </script>
+    <script>
+        function validateForm() {
+            let fname = document.forms["myForm"]["fname"].value;
+            function validateEmail(){
+                var eid = document.myForm.eid.value;
+                var atpos = eid.indexOf('@');
+                var dotpos = eid.lastIndexOf('.');
+                if(eid.length==0){
+                    alert("Email should not be empty!");
+                }
+                else if(atpos<1||dotpos<(atpos+3)||(dotpos+3)>=eid.length){ return true; }
+            }
+            if (fname == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+            else if(validateEmail()){
+                alert("Invalid email");
+            }
+        }
+
+        function menudisplay(){
+            var veg = document.getElementById("veg");
+            var nonveg = document.getElementById("nonveg");
+            var combo = document.getElementById("combo");
+
+            var vegtext = document.getElementById("vegdisplay");
+            var nonvegtext = document.getElementById("nonvegdisplay")
+            var vandnvtext = document.getElementById("vandnvtext")
+            var vtext = document.getElementById("vtext")
+            var nvtext = document.getElementById("nvtext")
+
+
+            if(veg.checked == true){
+                vegtext.style.display = "block";
+                nonvegtext.style.display = "none";
+                combotext.style.display = "none";
+                vtext.style.display = "block";
+                
+
+                
+            } else if(nonveg.checked == true){
+                vegtext.style.display = "none";
+                nonvegtext.style.display = "block";
+                combotext.style.display = "none";
+                nvtext.style.display = "block";
+                
+            } else if(combo.checked == true){
+                combotext.style.display = "block";
+                vegtext.style.display = "block";
+                nonvegtext.style.display = "block";
+                vtext.style.display = "none";
+                nvtext.style.display = "none";
+                
+            }
+        }
+
+        function getcheckeddata(){
+            var naans = document.getElementById("Naans");
+            var cholebature = document.getElementById("Chole bature");
+            var roti = document.getElementById("Roti");
+            var dahibhalla = document.getElementById("Dahi Bhalla");
+            var gobimanchuria = document.getElementById("Gobi Manchuria");
+            var chickenbiriyani = document.getElementById("Chicken Biriyani");
+            var fishfry = document.getElementById("Fish Fry");
+            var muttonbiriyani = document.getElementById("Mutton Biriyani");
+            var appolofish = document.getElementById("Appollo Fish");
+            var muttonkorma = document.getElementById("Mutton Korma");
+            // if(naans.checked == true):
+            var sum=""
+            // document.alert("naans checked");
+            if (naans.checked == true){
+                // sum = sum+(naans.value) + ",";
+                sum = 50
+              }
+            if (cholebature.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 100
+            }
+            if (roti.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 40
+            }
+            if (dahibhalla.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 200
+            }
+            if (gobimanchuria.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 250
+            }
+            if (chickenbiriyani.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 400
+            }
+            if (fishfry.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 500
+            }
+            if (muttonbiriyani.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 350
+            }
+            if (appolofish.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 600
+            }
+            if (muttonkorma.checked == true){
+                // sum = sum + (cholebature.value) + ",";
+                sum = 300
+            }
+            document.getElementById("paysum").innerHTML = String(sum);
+            // window.alert(sum)
+}
+        
+    </script>
+    <style>
+        body{
+            /*background-image: url('gallery');*/
+            background-repeat: no-repeat;
+            background-attachment:fixed;
+            background-size: cover;
+        }
+        body, :sample{
+            opacity: 0.5;
+        }
+        .he1{
+            font-family:"Lucida Console", "Courier New", monospace;;
+            text-align:center;
+            color: goldenrod;
+            font-size:80px;
+            float: center;
+            margin-top: -80px;
+            margin-bottom: 15px;
+        }
+        .msg{
+            margin-top: -80px;
+            /* margin-bottom: -0px; */
+        }
+    
+        
+                 /* Style inputs, select elements and textareas */
+            input[type=text], select, textarea{
+              width: 100%;
+              padding: 12px;
+              border: 1px solid #ccc;
+              border-radius: 3px;
+              box-sizing: border-box;
+              resize: vertical;
+            }
+
+            input[type=number], select, textarea{
+              width: 100%;
+              padding: 12px;
+              border: 1px solid #ccc;
+              border-radius: 3px;
+              box-sizing: border-box;
+              resize: vertical;
+            }
+    
+            /* Style the label to display next to the inputs */
+            label {
+              padding: 12px 12px 12px 0;
+              display: inline-block;
+              font-family: Arial;
+              font-weight: bold;
+            }
+    
+            /* Style the submit button */
+            input[type=submit] {
+              background-color: #146ca4;
+              color: white;
+              padding: 12px 20px;
+              border: none;
+              border-radius: 4px;
+              cursor: pointer;
+              float: center;
+            }
+            
+    
+            /* Style the container */
+            .container {
+              border-radius: 10px;
+              background-color: #add8e6/*#f2f2f2*/;
+              padding: 20px;
+              margin: 0 auto; width: 1000px;
+            }
+            
+            /* Floating column for labels: 25% width */
+            .col-25 {
+              float: left;
+              width: 20%;
+              margin-top: 6px;
+            }
+    
+            /* Floating column for inputs: 75% width */
+            .col-75 {
+              float: left;
+              width: 75%;
+              margin-top: 6px;
+            }
+            
+            /* Floating column for inputs: 75% width */
+            .col-75-1 {
+              float: left;
+              width: 75%;
+              margin-top: 6px;
+              font-size: 15px;
+            }
+    
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+    
+            /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+            @media screen and (max-width: 600px) {
+              .col-25, .col-75, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+              }
+            }
+    
+        </style>
+
+</head>
+
+<body style="background-image: url('https://th.bing.com/th/id/OIP.V9PJqaXpLCLJK4geDsPmRQHaEL?pid=ImgDet&w=172&h=97&c=7&dpr=1.1');">
+    <div class="sample">
+    <a href="form1.html"><img src="https://media.istockphoto.com/vectors/icon-vector-id851887452?k=6&m=851887452&s=612x612&w=0&h=K1V5jcXrjn_J7WygM7U6k16A0VEfVODin02QAbV-Z2w=" height="100" width="100"></a>
+    <p class="he1"><b>DE<font color="black">CROWDY</b></font>
+    </p>
+
+    
+    <center>
+    <!-- <p class='msg' style="font-size:60px; font-family:Arial;">Welcome</p> -->
+       <div class="container">
+
+      <form name="myForm" method='POST' onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">Full Name</label>
+          </div>
+          <div class="col-75">
+            <!-- {{ form.name }} -->
+            <input type="text" id="fname" name="fname" placeholder="Enter your full name">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-25">
+            <label for="phno">Phone Number</label>
+          </div>
+          <div class="col-75">
+           <!--  {{ form.ph_no }} -->
+           <input type="number" id="phno" name="phno" placeholder="Enter your Phone Number">
+          </div>
+        </div>
+        
+        <br>
+        <!-- <div class="row">
+          <div class="col-25">
+            <label for="item">Item</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="item" name="item" placeholder="Item">
+          </div>
+        </div> -->
+        <br>
+        <div class="row">
+          <div class="col-25">
+            <label for="menu">Menu</label>
+          </div>
+          <div class="col-75-1" align="left">
+            
+            <input type="radio" id="veg" name="menu" value="Veg" onclick="menudisplay()">
+            <label for="veg">Veg</label><br>
+            <input type="radio" id="nonveg" name="menu" value="Non-Veg" onclick="menudisplay()">
+            <label for="nonveg">Non-veg</label><br>
+            <input type="radio" id="combo" name="menu" value="Combo" onclick="menudisplay()">
+            <label for="combo">Combo</label><br>
+            <h3 id="combotext" style="display: none">Select your Combo</h3>
+            <div id="vegdisplay" style="display: none">
+                <h3 id="vtext">Select your Veg Items</h3>
+                <input type="radio" id="Naans" name="item" value="Naans" class="chkcvalues" onclick="getcheckeddata()">
+                <label for="naans">Naans</label><br>
+                <input type="radio" id="Chole bature" name="item" value="Chole bature" class="chkcvalues" onclick="getcheckeddata()">
+                <label for="cholebature"> Chole Bhature</label><br>
+                <input type="radio" id="Roti" name="item" class="chkcvalues" value="Roti" onclick="getcheckeddata()">
+                <label for="vehicle1"> Roti</label><br>
+                <input type="radio" id="Dahi Bhalla" name="item" class="chkcvalues" value="Dahi Bhalla" onclick="getcheckeddata()">
+                <label for="vehicle1"> Dahi Bhalla</label><br>
+                <input type="radio" id="Gobi Manchuria" name="item" class="chkcvalues" value="Gobi Manchuria" onclick="getcheckeddata()">
+                <label for="vehicle1"> Gobi Manchuria</label><br>
+                <br>
+            </div>
+            <div id="nonvegdisplay" style="display: none">
+                <h3 id="nvtext">Select your Non-Veg Items</h3>
+                <input type="radio" id="Chicken Biriyani" name="item" class="chkcvalues" value="Chicken Biriyani" onclick="getcheckeddata()">
+                <label for="vehicle1"> Chicken Biriyani</label><br>
+                <input type="radio" id="Fish Fry" name="item" class="chkcvalues" value="Fish Fry" onclick="getcheckeddata()">
+                <label for="vehicle1"> Fish Fry</label><br>
+                <input type="radio" id="Mutton Biriyani" name="item" class="chkcvalues" value="Mutton Biriyani" onclick="getcheckeddata()">
+                <label for="vehicle1"> Mutton Biriyani</label><br>
+                <input type="radio" id="Appollo Fish" name="item" class="chkcvalues" value="Appollo Fish" onclick="getcheckeddata()">
+                <label for="vehicle1"> Appollo Fish</label><br>
+                <input type="radio" id="Mutton Korma" name="item" class="chkcvalues" value="Mutton Korma" onclick="getcheckeddata()">
+                <label for="vehicle1"> Mutton Korma</label><br>
+                <br>
+            </div>
+            
+
+            
+            <input type="button" id="clear-button" value="Clear Selection" style="color: black">
+            <script type="text/javascript">
+                document.getElementById('clear-button').addEventListener('click', function () {
+                  ["veg", "nonveg", "combo"].forEach(function(id) {
+                    document.getElementById(id).checked = false;
+                  });
+                  return false;
+                })
+             </script>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-25">
+            <label for="item">Items</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="txtvalues" name="items" placeholder="Enter your Items list" disabled>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="extra">Add-ons</label>
+          </div>
+          <div class="col-75">
+            <textarea id="addons" name="addons" placeholder="Write what else you want to add to your order.." style="height:100px"></textarea>
+            <!-- {{ form.addons }} -->
+          </div>
+        </div> 
+        <br>
+        <h5 style="display: inline-block;font-weight:bold;">Your total Payment:</h5>
+                        <h5 style="display: inline-block;font-weight:bold; color: green;" name="paysum" id="paysum" onclick="calculate()">&nbsp;.</h5><h5 style="display: inline-block;font-weight:bold;">&nbsp;Rs</h5>
+        
+        <!-- <input type="text" value="itemsname" name="itemsname"> -->
+
+        <div class="row">
+          <input id="but1" type="submit" value="Order">
+        </div>
+      </form>
+    </div> 
+  </center>
+  
+  </div>
+  <script src="{% static 'script.js' %}" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Something</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+        $(document).ready(function(){
+        	$('.chkcvalues').click(function(){
+        		var txt="";
+        		$('.chkcvalues:checked').each(function(){
+        			txt+=$(this).val()+","
+        		});
+        		txt=txt.substring(0,txt.length-1)
+        		$('#txtvalues').val(txt);
+        	});
+        });
+    </script>
+</head>
+<body>
+	<h1>Insert values</h1>
+	<hr/>
+	<form method="POST">
+		{% csrf_token %}
+	Courses:
+	
+	<input type="checkbox" class="chkcvalues" values="Python"/>Python
+	<input type="checkbox" class="chkcvalues" values="Javascript"/>Javascript
+	<input type="checkbox" class="chkcvalues" values="MVC"/>MVC
+	<input type="checkbox" class="chkcvalues" values="PHP"/>PHP
+	<input type="checkbox" class="chkcvalues" values="Csharp"/>Csharp
+	<hr/>
+	<input type="text" id="txtvalues" name="coursename"/>
+	<input id="but1" type="submit" value="Insert"/>
+</form>
+</body>
+</html>
